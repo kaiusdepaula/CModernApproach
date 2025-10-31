@@ -12,4 +12,3 @@ If the logic is too complex, the function might be difficult to read and maintai
 int main(void){
     return 0;
 }
-
