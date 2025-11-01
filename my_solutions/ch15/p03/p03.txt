@@ -1,0 +1,4 @@
+Modify the qsort.c program of Section 9.6 so that the quicksort and split func¬
+tions are in a separate tile named quicksort.c. Create a header tile named quick¬
+sort.h that contains prototypes for the two functions and have both qsort. c and
+quicksort.c include this file.
