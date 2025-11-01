@@ -1,0 +1,58 @@
+NOTE: As this chapter will now make use of different files,
+I've decided to change a little bit the way I'm solving the exercises.
+
+In order to fully experience what the author expects me to do, I'll 
+use a combination of multiple header and c files and save the shell commands
+I execute to always keep track of what I've done.
+
+Assume that debug.h is a header file with the following contents:
+#ifdef DEBUG
+#define PRINT_DEBUG(n) printf("Value of " #n %d\n"< n)
+#else
+#define PRINT_DEBUG(n)
+#endif
+Let testdebug. c be the following source file:
+#include <stdio.h>
+#define DEBUG
+#include "debug.h"
+int main(void){
+    int i = 1, j = 2, k *= 3;
+    #ifdef DEBUG
+        printf("Output if DEBUG is defined:\n");
+    #else
+        printf("Output if DEBUG is not defined:\n");
+    #endif
+    PRINT_DEBUG(i);
+    PRINT_DEBUG(j) ;
+    PRINT_DEBUG(k);
+    PRINT_DEBUG(i + j);
+    PRINT_DEBUG(2 * i + j - k);
+    return 0;
+}
+(a) What is the output when the program is executed ?
+A: 
+Output if DEBUG is defined:
+Value of i1
+Value of j2
+Value of k3
+Value of i + j3
+Value of 2 * i + j - k1
+
+(b) What is the output if the #defined directive is removed from testdebug.c?
+A: 
+Output if DEBUG is not defined:
+
+(c) Explain why the output is different in pans (a) and (b).
+
+A: When DEBUG is not defined, the #ifdef DEBUG portion of the debug header wont be compiled,
+resulting on PRINT_DEBUG being defined as a blank expression which wont run.
+
+(d) Is it necessary tor the DEBUG macro to be defined before debug.h is included in order
+for PRINT_DEBUG to have the desired effect? Justify your answer.
+
+A: No, we can pass debug using a compiler flag, such as the flag -D on GCC.
+We can run the command gcc -DDEBUG -o ./program testdebug.c debug.h and
+the resulting program will be the same as running a.
+
+NOTE: I've added the debug.h header only for being thorough, there was no need of doing
+this as the c program is including the header by itself.
